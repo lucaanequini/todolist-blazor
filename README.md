@@ -18,7 +18,7 @@
    dotnet restore
 ```
 
-# 4 - Execute o projeto
+### 4 - Execute o projeto
 
 ```bash
    dotnet run
