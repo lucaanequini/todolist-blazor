@@ -1,0 +1,38 @@
+@page "/todolist"
+
+<p class="text-center h2 fw-bold">Tarefas</p>
+
+<div class="d-flex align-items-center justify-content-center gap-2">
+    <input class="form-control w-25" type="text" @bind="newTodoItem" />
+    <button class="btn btn-primary" type="button" @onclick="addTodoItem">Adicionar</button>
+</div>
+
+<hr />
+
+<ol class="list-group d-flex flex-column align-items-center pt-3 gap-3">
+    @foreach (string todoItem in todoList)
+    {
+        <li class="w-25 d-flex align-items-center justify-content-between">
+            @todoItem
+            <button class="btn btn-danger btn-sm" @onclick="(() => deleteTodoItem(todoItem))">
+                Deletar
+            </button>
+        </li>
+    }
+</ol>
+
+@code {
+    List<string> todoList = new() { "Ir ao supermercado", "Comprar remédios" };
+
+    string newTodoItem = "";
+    void addTodoItem()
+    {
+        todoList.Add(newTodoItem);
+        newTodoItem = "";
+    }
+
+    void deleteTodoItem(string todoItemToDelete)
+    {
+        todoList.Remove(todoItemToDelete);
+    }
+}
